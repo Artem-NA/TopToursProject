@@ -16,9 +16,44 @@ namespace toptours1
                 Response.Redirect("Login.aspx");
             Route r = Route.GetRoute(GetNameFromUrl());
             Label1.Text = r.ToString();
-            //Label2.Text = Review.GetAllReview();
-        }
+            List<Review> reviews = Review.GetAllReviewsOfRoute(r);
+            for(int i = 0; i < reviews.Count; i++)
+            {
+                TextBox tb = new TextBox();
+                Label label = new Label();
+                Label label2 = new Label();
+                Label nameLabel = new Label();
+                int id=reviews[i].GetCustomerId();
+                int rating = reviews[i].Rating;
+                Customer cust=Customer.GetCustomer(id);
+                nameLabel.Text = cust.Username +" rating:"+rating+"</br>";
+                label2.Text = "</br>";
+                label.Text = "</br>";
+                tb.Text = reviews[i].Content;
+                tb.Enabled = false;
+                Button btn = new Button
+                {
+                    Text = "Reply"
+                };
+                btn.Command += AttClick_Clicks;
+                btn.CommandArgument = tb.Text;
+                PlaceHolder1.Controls.Add(nameLabel);
+                PlaceHolder1.Controls.Add(tb);
+                PlaceHolder1.Controls.Add(label);
+                PlaceHolder1.Controls.Add(btn);
+                PlaceHolder1.Controls.Add(label2);
+            }
 
+        }
+        protected void AttClick_Clicks(object sender, CommandEventArgs e)
+        {
+            string name = e.CommandArgument as String;
+            if (name == null)
+            {
+                Label1.Text = "No data";
+                return;
+            }
+        }
         protected void Button1_Click(object sender, EventArgs e)
         {
             //Update route's info
@@ -98,12 +133,11 @@ namespace toptours1
             r.DoFavoriteRoute();
             Response.Write("<script>alert('Route added to favorite routes');</script>");
         }
+        
 
-        protected void Button2_Click(object sender, EventArgs e)
+        protected void HomeButton_Click(object sender, EventArgs e)
         {
-            //go to reviews
-           // Response.Redirect("ReviewsPage.aspx");
-
+            Response.Redirect("HomePage.aspx");
         }
     }
 }

@@ -424,6 +424,33 @@ namespace toptours1
         {
             return c.CustomerID;
         }
+        public static Customer GetCustomer(int customerID)
+        {
+            // Connection
+            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
+            //Command which checks if user already signed in by email and password
+            string sqlQuerty = $@"Select user_id,firstName,lastName,username,password1,email
+            From toptours.users
+            where (user_id='{customerID}')";
+            MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
+            Customer cust = null;
+            con.Open();
+            MySqlDataReader r = cmd.ExecuteReader();
+            if (r.Read())
+            {
+                //User In dataBase
+                int id = r.GetInt32(0);
+                string firstN = r.GetString(1);
+                string lastN = r.GetString(2);
+                string username = r.GetString(3);
+                string password = r.GetString(4);
+                string email = r.GetString(5);
+                cust = new Customer(id, firstN, lastN, username, password, email);
+            }
+            // Close Connection
+            con.Close();
+            return cust;
+        }
     }
     //Using Delegate so the program will decide which function to activate
     public delegate Customer Update(string email, string password,string newX);

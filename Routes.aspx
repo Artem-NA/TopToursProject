@@ -32,22 +32,20 @@
         <asp:Button ID="Button1" runat="server" Text="+" OnClick="Button1_Click" style="height: 26px" />
             <br />
         </div>
-        <p>
-            &nbsp;&nbsp;
+
+           
             <asp:Button ID="Button10" runat="server" Text="Favorite routes" OnClick="Button10_Click" />
             <br />
-            </p>
-        <p>
-            &nbsp;</p>
-        <p>
+
             Search route<br />
             <asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
-            &nbsp;
+           
             <asp:Button ID="Button4" runat="server" OnClick="Button4_Click1" Text="🔎" />
             <br />
-            <br />
-            </p>
+            <br />      
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <br />
+          
     </form>
 </body>
 </html>

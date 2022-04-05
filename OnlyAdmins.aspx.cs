@@ -38,7 +38,7 @@ namespace toptours1
 
                 }
                 { Label1.Text = "Account deleted successfully"; return; }
-                Label1.Text = "Wrong Username";
+                //Label1.Text = "Wrong Username";
 
             }
             //if (DropDownList1.SelectedValue == "2")

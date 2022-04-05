@@ -1857,6 +1857,7 @@
     <Content Include="bootstrap\fontawesome\svgs\solid\yin-yang.svg" />
     <Content Include="bootstrap\fontawesome\svgs\solid\z.svg" />
     <Content Include="bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="cssSite\stars1.css" />
     <Content Include="customstylesheet.css" />
     <Content Include="imgs\logo.jpeg" />
     <Content Include="log.css" />
@@ -1870,6 +1871,7 @@
     <Content Include="Routes.aspx" />
     <Content Include="RouteUpdate.aspx" />
     <Content Include="SignUp.aspx" />
+    <Content Include="starsfunc.js" />
     <Content Include="StyleSheet1.css" />
     <Content Include="tests.aspx" />
     <Content Include="Web.config" />

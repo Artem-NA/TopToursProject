@@ -1,0 +1,12 @@
+﻿
+.Empty {
+    background: url("emptyStar.png") no-repeat right top;
+}
+
+    .Empty:hover {
+        background: url("filledStar.png") no-repeat right top;
+    }
+
+.Filled {
+    background: url("filledStar.png") no-repeat right top;
+}
