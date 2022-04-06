@@ -16,18 +16,66 @@ namespace toptours1
         {
 
         }
+        //WORKING PROPERLY
+        //public static void AddNewAdmin(string username,string experince)
+        //{
+        //    // Connection
+        //    MySqlConnection con = new MySqlConnection(ServerNames.CDB);
+        //    //Command which delets all user's pictures for good
+        //    string sqlQuerty = $@"UPDATE `toptours`.`users` SET `IsAdmin` = '1' WHERE (username = '{username}');";
+        //    MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
+        //    con.Open();
+        //    cmd.ExecuteReader();
+        //    con.Close();
+        //    //incorrect email/password
+        //}
+        public static void RequestToBeAdmin(string username,string applicationMsg)
+        {
+            string sqlQuerty = 
+            $@"UPDATE `toptours`.`users` SET `IsAdmin` = '0', `aboutUser` = '{applicationMsg}' WHERE (username = '{username}');";
+            ConnectionToSql(sqlQuerty);
+        }
         public static void AddNewAdmin(string username)
         {
-            // Connection
-            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
-            //Command which delets all user's pictures for good
             string sqlQuerty = $@"UPDATE `toptours`.`users` SET `IsAdmin` = '1' WHERE (username = '{username}');";
+            ConnectionToSql(sqlQuerty);
+        }
+        public static void ConnectionToSql(string sqlQuerty)
+        {  //Working only for execute sql queries
+            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
             MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
             con.Open();
             cmd.ExecuteReader();
             con.Close();
-            //incorrect email/password
         }
+
+        public static List<string> Applications()
+        {
+            string sqlQuerty = $@"SELECT lastName,firstName,username,user_id,aboutUser
+            FROM toptours.users
+            WHERE (IsAdmin='0')";
+            List<string> list = new List<string>();
+            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
+            MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
+            con.Open();
+            MySqlDataReader dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    string lastName=dr.GetString(0);
+                    string  firstName=dr.GetString(1);
+                    string username = dr.GetString(2);
+                    string user_id = dr.GetString(3);
+                    string aboutUser=dr.GetString(4);
+                    string str = $@"Name:{lastName} {firstName} \nUsername:{username},id:{user_id} \nAboutUser:{aboutUser}";
+                    list.Add(str);
+                }
+            }
+            con.Close();
+            return list;
+        }
+
         public static Customer GetAnyCustomer(string username)
         {
             // Connection
