@@ -253,6 +253,7 @@ namespace toptours1
             con.Close();
             return cust;
         }
+        // ALL The Delete funcation  should be in their classes!!
         public void DeleteAllMyImages()
         {   
             // Connection
@@ -369,10 +370,6 @@ namespace toptours1
             con.Close();
             return cust;
         }
-        public string GetFullName()
-        {
-            return this.firstName+" "+this.lastName;
-        }
         public Admin IsAdmin()
         {
             // Connection
@@ -396,19 +393,6 @@ namespace toptours1
             con.Close();
             return a;
         }
-
-        public void AskToBeAdmin()
-        {
-            // Connection
-            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
-            //Command which give the admin to- know that user would like to be admin by adding -1 in isAdmin column in the database
-            string sqlQuerty = $@"UPDATE `toptours`.`users` SET `IsAdmin` = '-1' WHERE (`user_id` = '{this.customerID}');";
-            MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
-            con.Open();
-            cmd.ExecuteReader();        
-            // Close Connection
-            con.Close();
-        }
         public override string ToString()
         {
             //Show all the info about customer
@@ -419,10 +403,6 @@ namespace toptours1
             s += "<br/>Password: " + Password;
             s += "<br/>Email: " + Email;
             return s;
-        }
-        public static int GetId(Customer c)
-        {
-            return c.CustomerID;
         }
         public static Customer GetCustomer(int customerID)
         {

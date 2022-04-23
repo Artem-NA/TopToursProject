@@ -14,7 +14,7 @@ namespace toptours1
             if (Session["customer"] == null)
                 Response.Redirect("Login.aspx");
             Customer cust = (Customer)Session["customer"];
-            LinkButton3.Text = "Welcome "+cust.GetFullName();
+            LinkButton3.Text = "Welcome "+cust.Username;
         }
 
         protected void LinkButton3_Click(object sender, EventArgs e)

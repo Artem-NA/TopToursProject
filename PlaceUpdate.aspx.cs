@@ -63,6 +63,7 @@ namespace toptours1
             Customer cust = (Customer)Session["customer"];
             Place.DeletePlace(placeName, cust.CustomerID);
             Response.Write("<script>alert('Place deleted');</script>");
+            Response.AddHeader("REFRESH", "2;URL=HomePage.aspx");
         }
         protected void Button2_Click(object sender, EventArgs e)
         {

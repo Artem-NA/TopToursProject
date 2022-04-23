@@ -1,9 +1,10 @@
 ﻿body {
     margin: 0;
     padding: 0;
-    background-image: url(globe11.jpg);
+    /*background-image: url(imgs/tourWorld.jpg);
+    background-size:cover;*/
+    background-color:red;
 }
-
 .box {
     width: 300px;
     padding: 40px;
@@ -13,6 +14,7 @@
     transform: translate(-50%,-50%);
     background: #191919;
     text-align: center;
+
 }
 
     .box h1 {

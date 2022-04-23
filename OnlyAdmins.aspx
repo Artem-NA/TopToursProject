@@ -23,7 +23,7 @@
             Enter value of the selected content
             <br />
             <asp:TextBox ID="ValueTB" runat="server"></asp:TextBox>
-            <asp:Button ID="SearchB" runat="server" Text="Search" OnClick="SearchB_Click" />
+            <asp:Button ID="SearchB" runat="server" Text="Search" OnClick="SearchB_Click" style="height: 26px" />
             <br/>
             <asp:BulletedList ID="BulletedList1" runat="server"></asp:BulletedList>
             <br />

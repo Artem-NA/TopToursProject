@@ -8,9 +8,14 @@ namespace toptours1
 {
     public class Admin : Customer
     {
+        //admin have to:
+        //control the website
+        //requirements :skill - when user was first signed in(time) , honesty
+        //add new routes
+        // add new user to be admin
+        // delete route /review/ user/ place/ picture
         public Admin(string firstName, string lastName, string username, string password, string email,string imgProfile) : base(firstName, lastName, username, password, email,imgProfile)
         {
-           
         }
         public Admin(string firstName, string lastName, string username, string password, string email) : base(firstName, lastName, username, password, email)
         {
@@ -29,19 +34,28 @@ namespace toptours1
         //    con.Close();
         //    //incorrect email/password
         //}
+        
         public static void RequestToBeAdmin(string username,string applicationMsg)
-        {
+        { 
+            //Adding the application message to the given username in the database and inform admins that this user would like to be admin
             string sqlQuerty = 
             $@"UPDATE `toptours`.`users` SET `IsAdmin` = '0', `aboutUser` = '{applicationMsg}' WHERE (username = '{username}');";
             ConnectionToSql(sqlQuerty);
         }
-        public static void AddNewAdmin(string username)
+        public static void NewAdmin(string user_id,bool decision)
         {
-            string sqlQuerty = $@"UPDATE `toptours`.`users` SET `IsAdmin` = '1' WHERE (username = '{username}');";
+            //if admin accepted the application then user is new admin.Otherwise user is not admin
+            string sqlQuerty = $@"UPDATE `toptours`.`users` SET `IsAdmin` = '-1' WHERE (user_id = '{user_id}');";
+            if(decision)
+            {
+                sqlQuerty = $@"UPDATE `toptours`.`users` SET `IsAdmin` = '1' WHERE (user_id = '{user_id}');";
+                ConnectionToSql(sqlQuerty);
+                return;
+            }
             ConnectionToSql(sqlQuerty);
         }
         public static void ConnectionToSql(string sqlQuerty)
-        {  //Working only for execute sql queries
+        {  //Working only for executing sql queries
             MySqlConnection con = new MySqlConnection(ServerNames.CDB);
             MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
             con.Open();
@@ -51,6 +65,7 @@ namespace toptours1
 
         public static List<string> Applications()
         {
+            //Creating a list which contains information about all the users who submitted application
             string sqlQuerty = $@"SELECT lastName,firstName,username,user_id,aboutUser
             FROM toptours.users
             WHERE (IsAdmin='0')";
@@ -67,15 +82,40 @@ namespace toptours1
                     string  firstName=dr.GetString(1);
                     string username = dr.GetString(2);
                     string user_id = dr.GetString(3);
-                    string aboutUser=dr.GetString(4);
-                    string str = $@"Name:{lastName} {firstName} \nUsername:{username},id:{user_id} \nAboutUser:{aboutUser}";
+                    string aboutUser = "Hi!";
+                    if (dr.GetString(4) != null)
+                    {
+                        aboutUser = dr.GetString(4);
+                    }
+                    string str =$@"<br/>Name:{lastName} {firstName} <br/> Username:{username},id:{user_id} <br/> AboutUser:{aboutUser} <br/>";
                     list.Add(str);
                 }
             }
             con.Close();
             return list;
         }
-
+        public static List<string> ApplicationsID()
+        {
+            // Creating list of users' ids
+            string sqlQuerty = $@"SELECT user_id
+            FROM toptours.users
+            WHERE (IsAdmin='0')";
+            List<string> list = new List<string>();
+            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
+            MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
+            con.Open();
+            MySqlDataReader dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    string user_id = dr.GetString(0);
+                    list.Add(user_id);
+                }
+            }
+            con.Close();
+            return list;
+        }
         public static Customer GetAnyCustomer(string username)
         {
             // Connection
@@ -89,7 +129,7 @@ namespace toptours1
             con.Open();
             MySqlDataReader r = cmd.ExecuteReader();
             if (r.Read())
-                cust =Login(r.GetString(0), r.GetString(1));
+                cust = Login(r.GetString(0), r.GetString(1));
             // Close Connection
             con.Close();
             return cust;

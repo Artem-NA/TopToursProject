@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Login TopTours</title>
+    <title>TopTours-Login</title>
     <link rel="stylesheet" href="log.css"/>
 </head>
 <body>

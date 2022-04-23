@@ -14,6 +14,8 @@
             <asp:Button ID="Button1" runat="server" Text="Add New Admin" OnClick="Button1_Click" />
             <asp:Button ID="Button2" runat="server" Text="Ask To Be Admin" OnClick="Button2_Click" />
             <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            <br />
+            <asp:PlaceHolder ID="Applications" runat="server"></asp:PlaceHolder>
 
 
         </div>

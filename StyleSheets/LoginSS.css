@@ -1,0 +1,55 @@
+﻿body {
+    background-image: url('../images/Screenshot (192).png');
+    background-size: 50px 50px;
+}
+#square {
+    border: 5px solid green;
+    text-align: center;
+    background-color:black;
+    width: 500px;
+    height: 300px;
+    margin: auto;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+h1{
+    color:green;
+    text-align:center;    
+}
+h1:hover{
+    color:brown;
+}
+#line, #line2 {
+    text-align: center;
+    padding: 10px;
+    color: lightslategray;
+}
+.pass, .email {
+    color:black;
+    display: block;
+    margin: auto;
+    background-color:lightslategrey;
+    border-radius:20px;
+}
+.btn{
+    display:block;
+    margin:auto;
+    border-radius: 20px;
+    background-color:green;
+    width:100px;
+    height:30px;
+    
+}
+#line3{
+    padding:5px;
+}
+.btn:hover {
+    background-color: brown;
+}
+.link{
+    color:dimgrey;
+    display:block;
+    padding: 20px;
+}
