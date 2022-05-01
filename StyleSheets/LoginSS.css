@@ -1,4 +1,4 @@
-﻿body {
+﻿/*body {
     background-image: url('../images/Screenshot (192).png');
     background-size: 50px 50px;
 }
@@ -52,4 +52,8 @@ h1:hover{
     color:dimgrey;
     display:block;
     padding: 20px;
+}*/
+
+#service {
+   top:20%;
 }

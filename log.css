@@ -1,8 +1,8 @@
 ﻿body {
     margin: 0;
     padding: 0;
-    /*background-image: url(imgs/tourWorld.jpg);
-    background-size:cover;*/
+    background-image: url(images/loginBG.jpg);
+    background-size:cover;
     background-color:red;
 }
 .box {

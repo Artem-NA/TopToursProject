@@ -30,7 +30,7 @@ namespace toptours1
                 return;
             }
             Session["Customer"] = cust;
-            Response.Redirect("HomePage.aspx");
+            Response.Redirect("Home.aspx");
         }
 
         protected void Button3_Click1(object sender, EventArgs e)

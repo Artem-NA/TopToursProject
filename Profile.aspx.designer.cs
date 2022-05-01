@@ -96,13 +96,13 @@ namespace toptours1
         protected global::System.Web.UI.WebControls.TextBox TextBox13;
 
         /// <summary>
-        /// TextBox14 control.
+        /// pass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox14;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword pass;
 
         /// <summary>
         /// Button4 control.

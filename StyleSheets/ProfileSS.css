@@ -1,0 +1,36 @@
+﻿body {
+    background-color: #808080;
+}
+/*.btn {
+    display: block;
+    margin: auto;
+    border-radius: 20px;
+    background-color: white;
+    width: 100px;
+    height: 30px;
+}
+#square {
+    border: 5px solid white;
+    text-align: center;
+    background-color:darkcyan ;
+    width: 500px;
+    height: 700px;
+    margin: auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.tb {
+    color: black;
+    display: block;
+    margin: auto;
+    background-color: white;
+    border-radius: 20px;
+}
+
+*/
+.travel-box {
+    position:absolute;
+    transform: translate(10%,115%);
+}

@@ -17,7 +17,7 @@ namespace toptours1
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("HomePage.aspx");
+            Response.Redirect("Home.aspx");
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace toptours1
         protected void Button4_Click(object sender, EventArgs e)
         {
             string email = TextBox13.Text;
-            string password = TextBox14.Text;
+            string password = pass.Value.ToString();
             if (email == "" || password == "")
             {
                 Label1.Text = "Empty Email/Password";
@@ -78,14 +78,20 @@ namespace toptours1
             if(cust==null)
             {
                 Label1.Text = "Wrong password/email";
+                return;
             }
-            if (!cust.DeleteAccount())
+            if (cust.DeleteAccount())
             {
                     Label1.Text = "Account deleted successfully";
                     Response.AddHeader("REFRESH", "3;URL=Login.aspx");
                     return;
             }
             Label1.Text = "Incorrect Email/Password";
+        }
+
+        protected void Button3_Click1(object sender, EventArgs e)
+        {
+
         }
     }
 }
