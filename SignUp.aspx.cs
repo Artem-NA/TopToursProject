@@ -5,30 +5,35 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using System.Diagnostics;
+
 
 namespace toptours1
 {
-    public partial class SignUp : System.Web.UI.Page
+    public partial class Signup1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Debug.Print("Hello World");
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void LoginB_Click(object sender, EventArgs e)
         {
-            string fn = TextBox2.Text;
-            string ln = TextBox3.Text;
-            string username = TextBox4.Text;
-            string password = TextBox5.Text;
-            string email = TextBox6.Text;
-            //Get url image
-            string filename = Path.GetFileName(FileUpload1.PostedFile.FileName);
-            string path= Server.MapPath(FileUpload1.FileName);
+            string fn = FirstName.Value;
+            string ln = LastName.Value;
+            string username = Username.Value;
+            string password = Password.Value;
+            string email = Email.Value;
+            //Get url image\
+            string folderPath = Server.MapPath(@"~\images\");
+            file1.SaveAs(folderPath + Path.GetFileName(file1.FileName));
+            //Debug.Print("lollll"+folderPath + Path.GetFileName(FileUpload1.FileName));
+            
+            string filename = Path.GetFileName(file1.PostedFile.FileName);
+            //string path = Server.MapPath(file1.PostedFile.FileName);
             if (filename == "")
             {
                 filename = "DefaultProfile.png";
-                path = @"C:\Users\artem\source\repos\toptours1\imgs";
             }
             if (!IsValidInput(fn) || !IsValidInput(ln) || !IsValidInput(username) || !IsValidInput(password))
             {
@@ -40,7 +45,7 @@ namespace toptours1
                 Label1.Text = "Invaild email";
                 return;
             }
-            if (Customer.SignUp(fn, ln, username, password, email,filename,path) == null)
+            if (Customer.SignUp(fn, ln, username, password, email, filename) == null)
             {
                 Label1.Text = "Email already taken,Try again with  a different email";
                 return;
@@ -51,9 +56,10 @@ namespace toptours1
         }
         public static bool IsValidInput(string str)
         {
-            return (str.Length > 1);
+            //set min length and max length to input
+            return (str.Length > 1 && str.Length < 100);
+                
         }
-        //check if email has @ symbol and 3 part in it
         public static bool IsValidEmail(string email)
         {
             try

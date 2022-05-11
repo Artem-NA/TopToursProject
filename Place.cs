@@ -56,6 +56,7 @@ namespace toptours1
             this.placeName = placeName;
             this.placeInfo = placeInfo;
         }
+        public Place() { }
         public static Place AddPlace(string placeName, string placeInfo, float longitude, float latitude, bool isPrivate, int userId)
         {
 
@@ -143,41 +144,97 @@ namespace toptours1
             }
             return places;
         }
-        public static Place UpdatePlaceInfo(string placeName, string newPlaceInfo, int userId)
+        public static void UpdatePlaceInfo( string newPlaceInfo,int place_id, int userId)
         {
             //Update User's place info
             // Connection
             MySqlConnection con = new MySqlConnection(ServerNames.CDB);
             //Command which checks if user already signed in by email and password
-            string sqlQuerty = $@"select p.place_id,p.placeInfo
+            string sqlQuerty = $@"select p.placeInfo
             From toptours.places p INNER JOIN toptours.users u
             On p.user_id=u.user_id
-            Where(p.user_id='{userId}')And (p.placeName='{placeName}')";
+            Where(p.user_id='{userId}')And (p.place_id='{place_id}')";
             MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
-            Place p = null;
             con.Open();
             MySqlDataReader r = cmd.ExecuteReader();
             if (r.Read())
             {
                 //Place In dataBase
-                int id = r.GetInt32(0);
-                string placeInfo = r.GetString(1);
-
-                p = new Place(id, placeName, placeInfo);
                 // Close Connection
                 con.Close();
                 con.Open();
                 //Command which update user's password
-                cmd.CommandText = $@"UPDATE `toptours`.`places` SET `placeInfo` = '{newPlaceInfo}' WHERE (`place_id` = '{id}');";
+                cmd.CommandText = $@"UPDATE `toptours`.`places` SET `placeInfo` = '{newPlaceInfo}' WHERE (`place_id` = '{place_id}');";
                 cmd.ExecuteReader();
-                p.placeInfo = newPlaceInfo;
                 // Close Connection
                 con.Close();
-                return p;
+               
             }
             // Close Connection
             con.Close();
-            return p;
+           
+
+
+
+        }
+        public static void UpdateIsPrivate(bool isPrivate, int place_id, int userId)
+        {
+            //Update User's place info
+            int value=0;
+            if (isPrivate) { value = 1; }
+            // Connection
+            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
+            //Command which checks if user already signed in by email and password
+            string sqlQuerty = $@"select p.isPrivate
+            From toptours.places p INNER JOIN toptours.users u
+            On p.user_id=u.user_id
+            Where(p.user_id='{userId}')And (p.place_id='{place_id}')";
+            MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
+            con.Open();
+            MySqlDataReader r = cmd.ExecuteReader();
+            if (r.Read())
+            {
+                //Place In dataBase
+                // Close Connection
+                con.Close();
+                con.Open();
+                //Command which update user's password
+                cmd.CommandText = $@"UPDATE `toptours`.`places` SET `isPrivate` = '{value}' WHERE (`place_id` = '{place_id}');";
+                cmd.ExecuteReader();
+                // Close Connection
+                con.Close();
+
+            }
+            // Close Connection
+            con.Close();
+        }
+        public static void UpdatePlaceName(string placeName,int place_id,int userId)
+        {
+            //Update User's place info
+            // Connection
+            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
+            //Command which checks if user already signed in by email and password
+            string sqlQuerty = $@"select p.placeName
+            From toptours.places p INNER JOIN toptours.users u
+            On p.user_id=u.user_id
+            Where(p.user_id='{userId}')And (p.place_id='{place_id}')";
+            MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
+            con.Open();
+            MySqlDataReader r = cmd.ExecuteReader();
+            if (r.Read())
+            {
+                //Place In dataBase
+                // Close Connection
+                con.Close();
+                con.Open();
+                //Command which update user's password
+                cmd.CommandText = $@"UPDATE `toptours`.`places` SET `placeName` = '{placeName}' WHERE (`place_id` = '{place_id}');";
+                cmd.ExecuteReader();
+                // Close Connection
+                con.Close();
+            }
+            // Close Connection
+            con.Close();
 
 
 

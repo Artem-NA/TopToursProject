@@ -1,20 +1,33 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="toptours1.Login1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="toptours1.Login11" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>TopTours-Login</title>
-    <link rel="stylesheet" href="log.css"/>
+    <%-- My Css --%>
+    <link href="StyleSheets/SSLogin.css" rel="stylesheet" />
 </head>
 <body>
-    <form class="box" method="post" runat="server" id="form1">
-  <h1>Login</h1>
-        <asp:TextBox ID="TextBox2" placeholder="Email" runat="server" autocomplete="off" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
-    <asp:TextBox ID="TextBox1" type="password" placeholder="Password" autocomplete="off" runat="server"></asp:TextBox>
-    <asp:Button ID="Button1" runat="server" Text="Login" OnClick="Button1_Click1" />
-    <asp:Label ID="Label1" runat="server" class="lab"></asp:Label>
-    <asp:Button ID="Button2" runat="server" Text="Sign Up" OnClick="Button3_Click1" />
-</form>
+    <div class="loginBox">
+        <img src="/imgs/logo.jpeg" class="logo" />
+        <form id="form1" runat="server">
+           <h1>Login</h1>
+            <h2>Username:</h2>
+           <input type="text" autocomplete="off" id="Username" runat="server" placeholder="Enter Username" />
+            <h2>Password:</h2>
+            <input type="password" autocomplete="off" id="Password" runat="server" placeholder="Enter Username" />
+              <br /> 
+            <asp:Button ID="LoginB" Text="Login" OnClick="LoginB_Click" runat="server" /> <br />
+            <a href="SignUp.aspx">Don't Have An Account?</a> <br />
+            <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+        </form>
+        
+        
+
+
+
+      
+    </div>
 </body>
 </html>

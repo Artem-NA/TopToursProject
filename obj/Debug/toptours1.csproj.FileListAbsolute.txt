@@ -53,8 +53,6 @@ C:\Users\artem\source\repos\toptours1\bin\roslyn\vbc.rsp
 C:\Users\artem\source\repos\toptours1\bin\roslyn\VBCSCompiler.exe
 C:\Users\artem\source\repos\toptours1\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\artem\source\repos\toptours1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\artem\source\repos\toptours1\bin\MySql.Data.dll
-C:\Users\artem\source\repos\toptours1\bin\MySql.Web.dll
 C:\Users\artem\source\repos\toptours1\bin\Google.Protobuf.dll
 C:\Users\artem\source\repos\toptours1\bin\Zstandard.Net.dll
 C:\Users\artem\source\repos\toptours1\bin\K4os.Compression.LZ4.Streams.dll
@@ -72,3 +70,4 @@ C:\Users\artem\source\repos\toptours1\bin\Microsoft.CodeDom.Providers.DotNetComp
 C:\Users\artem\source\repos\toptours1\obj\Debug\toptours1.csproj.CopyComplete
 C:\Users\artem\source\repos\toptours1\obj\Debug\toptours1.dll
 C:\Users\artem\source\repos\toptours1\obj\Debug\toptours1.pdb
+C:\Users\artem\source\repos\toptours1\bin\System.Numerics.Vectors.dll

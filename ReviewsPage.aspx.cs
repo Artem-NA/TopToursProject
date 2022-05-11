@@ -29,20 +29,22 @@ namespace toptours1
             int rating = Convert.ToInt32(TextBox3.Text);
             string caption = TextBox4.Text;
             string routeName = TextBox1.Text;
-            if (Review.AddReview(content, rating, caption, cust, routeName) == null)
+            Route r = Route.GetRoute(routeName);
+            if (MyService.AddReview(content, rating, caption, cust.CustomerID, r.RouteID))
             {
                 Label1.Text = "Review not added because route not created or the same review already created by yourself";
                 return;
             }
             Label1.Text = "Review added!";
+
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
             Customer cust = (Customer)Session["customer"];
             string caption = TextBox4.Text;
-            Review r = Review.GetReview(cust, caption);
-            r.DeleteReview();
+            localhost.Review r = MyService.GetReview(cust.CustomerID, caption);
+            MyService.DeleteReview(r);
 
         }
 
@@ -52,15 +54,15 @@ namespace toptours1
             string content = TextBox2.Text;
             string rating = TextBox3.Text;
             string caption = TextBox4.Text;
-            Review r = Review.GetReview(cust, caption);
+            localhost.Review r = MyService.GetReview(cust.CustomerID, caption);
             if (r == null)
             {
                 Label1.Text = "Update failed";
                 return;
             }
-            r.UpdateCaption(caption);
-            r.UpdateRating(rating);
-            r.UpdateContent(content);
+            //r.UpdateCaption(caption);
+            //r.UpdateRating(rating);
+            //r.UpdateContent(content);
             Label1.Text = "Review Updated Successfully";
 
 
@@ -70,17 +72,18 @@ namespace toptours1
         {
             Customer cust = (Customer)Session["customer"];
             string caption = TextBox4.Text;
-            Review r = Review.GetReview(cust, caption);
+            localhost.Review r = MyService.GetReview(cust.CustomerID, caption);
             if (r == null) { Label1.Text = "There is not review with that name"; return; }
             TextBox2.Text = r.Content;
             TextBox3.Text = Convert.ToString(r.Rating);
-            TextBox1.Text = r.GetRouteName(cust);
-           // TextBox3.Text = Convert.ToString(r.Rating);
+            //TextBox1.Text = r.GetRouteName(cust);
+            // TextBox3.Text = Convert.ToString(r.Rating);
         }
 
         protected void Button5_Click(object sender, EventArgs e)
         {
             Response.Redirect("HomePage.aspx");
         }
+
     }
 }

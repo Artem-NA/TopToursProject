@@ -34,7 +34,7 @@ namespace toptours1
             this.username = username;
             this.password = password;
             this.email = email;
-            this.profileImage=profileImage;
+            this.profileImage = profileImage;
         }
         public Customer(string firstName, string lastName, string username, string password, string email)
         {
@@ -53,7 +53,7 @@ namespace toptours1
             this.password = password;
             this.email = email;
         }
-        public Customer(int customerID, string firstName, string lastName, string username, string password, string email)
+        public Customer(int customerID, string firstName, string lastName, string username, string password, string email,string profileImage)
         {
             //constructor 3
             this.firstName = firstName;
@@ -62,8 +62,29 @@ namespace toptours1
             this.password = password;
             this.email = email;
             this.customerID = customerID;
+            this.profileImage = profileImage;
         }
-        public static Customer SignUp(string firstName, string lastName, string username, string password, string email,string imgUrl,string path)
+        public static string GetProfileImage(int customer_id)
+        {
+            // Connection
+            string str = "defualt.png";
+            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
+            //Command which checks if user already signed in by email and password
+            string sqlQuerty = $@"SELECT fileName
+            FROM toptours.images
+            Where (user_id='{customer_id}') AND (place_id is null)";
+            MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
+            con.Open();
+            MySqlDataReader r = cmd.ExecuteReader();
+            if (r.Read())
+            {
+                str=r.GetString(0);
+            }
+            // Close Connection
+            con.Close();
+            return str;
+        }
+        public static Customer SignUp(string firstName, string lastName, string username, string password, string email,string imgUrl)
         {
             //Signup new user if not exists in the database
             // Connection
@@ -86,21 +107,22 @@ namespace toptours1
             cmd.CommandText = $@"INSERT INTO `toptours`.`users` (`firstName`, `lastName`, `username`, `password1`, `email`) VALUES ('{firstName}', '{lastName}', '{username}', '{password}', '{email}');";
             cmd.ExecuteNonQuery();    
             con.Close();
-            AddProfileImg(imgUrl,path, email, password);
+            AddProfileImg(imgUrl, email, password);
             Customer cust = new Customer(firstName, lastName, username, password, email,imgUrl);
             // Close Connection
             con.Close();
             return cust;
             
         }
-        public static void AddProfileImg(string urlName,string path,string email,string password)
+        public Customer() { }
+        public static void AddProfileImg(string urlName,string email,string password)
         {
 
             // Connection
             Customer c = Login(email, password);
             MySqlConnection con = new MySqlConnection(ServerNames.CDB);
             //Command which delets all user's pictures for good
-            string sqlQuerty = $@"INSERT INTO `toptours`.`images` (`url`, `fileName`, `user_id`) VALUES ('{path}', '{urlName}', '{c.CustomerID}');";
+            string sqlQuerty = $@"INSERT INTO `toptours`.`images` ( `fileName`, `user_id`) VALUES ('{urlName}', '{c.CustomerID}');";
             MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
             con.Open();
             cmd.ExecuteReader();
@@ -143,7 +165,7 @@ namespace toptours1
                 string firstN = r.GetString(1);
                 string lastN = r.GetString(2);
                 string username = r.GetString(3);
-                cust = new Customer(id,firstN, lastN, username, password, email);
+                cust = new Customer(id,firstN, lastN, username, password, email,GetProfileImage(id));
             }
             // Close Connection
             con.Close();
@@ -425,7 +447,7 @@ namespace toptours1
                 string username = r.GetString(3);
                 string password = r.GetString(4);
                 string email = r.GetString(5);
-                cust = new Customer(id, firstN, lastN, username, password, email);
+                cust = new Customer(id, firstN, lastN, username, password, email,GetProfileImage(id));
             }
             // Close Connection
             con.Close();

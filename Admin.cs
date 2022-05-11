@@ -158,14 +158,16 @@ namespace toptours1
         }
         public static bool DeleteAnyReview(string caption,string username)
         {
-            Customer cust = GetAnyCustomer(username);
-            Review r = Review.GetReview(cust, caption);
-            if (cust != null&&r!=null)
-            {
-                r.DeleteReview();
-                return true;
-            }
-            return false;
+            //Customer cust = GetAnyCustomer(username);
+            //localhost.Review r = localhost.(cust, caption);
+            //if (cust != null && r != null)
+            //{
+            //    r.DeleteReview();
+            //    return true;
+            //}
+            //return false;\
+            return true;
+
 
         }
     }

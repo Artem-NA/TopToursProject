@@ -28,6 +28,10 @@ namespace toptours1
             this.routeTitle = routeTitle;
             this.routeInfo = routeInfo;
         }
+        public Route()
+        {
+
+        }
         public List<Place> Places { get => places; set => places = value; }
         public int RouteID { get => routeID; set => routeID = value; }
         public string RouteName { get => routeName; set => routeName = value; }

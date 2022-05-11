@@ -1,7 +1,7 @@
 ﻿body {
     background-color: #808080;
 }
-/*.btn {
+.btn {
     display: block;
     margin: auto;
     border-radius: 20px;
@@ -14,10 +14,10 @@
     text-align: center;
     background-color:darkcyan ;
     width: 500px;
-    height: 700px;
+    height: 900px;
     margin: auto;
     position: absolute;
-    top: 10%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -28,9 +28,14 @@
     background-color: white;
     border-radius: 20px;
 }
-
-*/
-.travel-box {
-    position:absolute;
+#Image1{
+    width:27%;
+    height:16%;
+    border-radius:50%;
+}
+.travel-box 
+{
+    position: absolute;
+    left: 13.5%;
     transform: translate(10%,115%);
 }

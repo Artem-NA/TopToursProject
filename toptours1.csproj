@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AboutUs2.aspx" />
     <Content Include="Application.aspx" />
     <Content Include="assets\css\animate.css" />
     <Content Include="assets\css\bootsnav.css" />
@@ -124,30 +125,54 @@
     <Content Include="assets\js\waypoints.min.js" />
     <Content Include="assets\logo\favicon.png" />
     <Content Include="assets\logo\logo.jpeg" />
+    <Content Include="Blog.aspx" />
+    <Content Include="ContactUs.aspx" />
+    <Content Include="EditPlace2.aspx" />
     <Content Include="Home.aspx" />
-    <Content Include="images\Screenshot %28192%29.png" />
-    <Content Include="index.aspx" />
+    <Content Include="Home2.aspx" />
+    <Content Include="HomeSecured.aspx" />
+    <Content Include="images\pic1.jpg" />
+    <Content Include="images\pic2.jpg" />
+    <Content Include="images\pic3.jpg" />
+    <Content Include="images\sea.jpg" />
     <Content Include="imgs\logo.jpeg" />
-    <Content Include="log.css" />
+    <Content Include="imgs\logoPNG.png" />
+    <Content Include="imgs\logoWhPNG.png" />
+    <Content Include="imgs\mapbox-icon.png" />
     <Content Include="Login.aspx" />
     <Content Include="NICK.aspx" />
     <Content Include="OnlyAdmins.aspx" />
-    <Content Include="PlaceShow.aspx" />
+    <Content Include="Places2.aspx" />
     <Content Include="PlacesPage.aspx" />
     <Content Include="PlaceUpdate.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="ReviewsPage.aspx" />
+    <Content Include="ReviewsRoute.aspx" />
+    <Content Include="Route2.aspx" />
     <Content Include="Routes.aspx" />
     <Content Include="RouteUpdate.aspx" />
+    <Content Include="ShowMap.aspx" />
+    <Content Include="ShowPlace2.aspx" />
     <Content Include="SignUp.aspx" />
-    <Content Include="StyleSheets\LoginSS.css" />
     <Content Include="StyleSheets\ProfileSS.css" />
-    <Content Include="TopTours.asmx" />
+    <Content Include="StyleSheets\SSAboutUs.css" />
+    <Content Include="StyleSheets\SSHome.css" />
+    <Content Include="StyleSheets\SSLogin.css" />
+    <Content Include="StyleSheets\SSMap.css" />
+    <Content Include="StyleSheets\SSPlace.css" />
+    <Content Include="StyleSheets\SSRegister.css" />
+    <Content Include="StyleSheets\SSRoute.css" />
     <Content Include="Web.config" />
-    <Content Include="HomePage.aspx" />
-    <Content Include="WebForm2.aspx" />
+    <Content Include="Applications.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutUs2.aspx.cs">
+      <DependentUpon>AboutUs2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AboutUs2.aspx.designer.cs">
+      <DependentUpon>AboutUs2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin.cs" />
     <Compile Include="Application.aspx.cs">
       <DependentUpon>Application.aspx</DependentUpon>
@@ -156,6 +181,27 @@
     <Compile Include="Application.aspx.designer.cs">
       <DependentUpon>Application.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Blog.aspx.cs">
+      <DependentUpon>Blog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Blog.aspx.designer.cs">
+      <DependentUpon>Blog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContactUs.aspx.cs">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContactUs.aspx.designer.cs">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EditPlace2.aspx.cs">
+      <DependentUpon>EditPlace2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditPlace2.aspx.designer.cs">
+      <DependentUpon>EditPlace2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -163,14 +209,21 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="Customer.cs" />
+    <Compile Include="Home2.aspx.cs">
+      <DependentUpon>Home2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="index.aspx.designer.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="Home2.aspx.designer.cs">
+      <DependentUpon>Home2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Customer.cs" />
+    <Compile Include="HomeSecured.aspx.cs">
+      <DependentUpon>HomeSecured.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomeSecured.aspx.designer.cs">
+      <DependentUpon>HomeSecured.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -178,6 +231,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MyService.cs" />
     <Compile Include="NICK.aspx.cs">
       <DependentUpon>NICK.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -193,12 +247,12 @@
       <DependentUpon>OnlyAdmins.aspx</DependentUpon>
     </Compile>
     <Compile Include="Place.cs" />
-    <Compile Include="PlaceShow.aspx.cs">
-      <DependentUpon>PlaceShow.aspx</DependentUpon>
+    <Compile Include="Places2.aspx.cs">
+      <DependentUpon>Places2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PlaceShow.aspx.designer.cs">
-      <DependentUpon>PlaceShow.aspx</DependentUpon>
+    <Compile Include="Places2.aspx.designer.cs">
+      <DependentUpon>Places2.aspx</DependentUpon>
     </Compile>
     <Compile Include="PlacesPage.aspx.cs">
       <DependentUpon>PlacesPage.aspx</DependentUpon>
@@ -221,12 +275,31 @@
     <Compile Include="Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="ReviewsPage.aspx.cs">
       <DependentUpon>ReviewsPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ReviewsPage.aspx.designer.cs">
       <DependentUpon>ReviewsPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReviewsRoute.aspx.cs">
+      <DependentUpon>ReviewsRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReviewsRoute.aspx.designer.cs">
+      <DependentUpon>ReviewsRoute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Route2.aspx.cs">
+      <DependentUpon>Route2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Route2.aspx.designer.cs">
+      <DependentUpon>Route2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Routes.aspx.cs">
       <DependentUpon>Routes.aspx</DependentUpon>
@@ -242,6 +315,23 @@
     <Compile Include="RouteUpdate.aspx.designer.cs">
       <DependentUpon>RouteUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Route.cs" />
+    <Compile Include="ServerNames.cs" />
+    <Compile Include="ShowMap.aspx.cs">
+      <DependentUpon>ShowMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShowMap.aspx.designer.cs">
+      <DependentUpon>ShowMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ShowPlace2.aspx.cs">
+      <DependentUpon>ShowPlace2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShowPlace2.aspx.designer.cs">
+      <DependentUpon>ShowPlace2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -249,31 +339,20 @@
     <Compile Include="SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Review.cs" />
-    <Compile Include="Route.cs" />
-    <Compile Include="ServerNames.cs" />
-    <Compile Include="HomePage.aspx.cs">
-      <DependentUpon>HomePage.aspx</DependentUpon>
+    <Compile Include="Web References\localhost\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Applications.aspx.cs">
+      <DependentUpon>Applications.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="HomePage.aspx.designer.cs">
-      <DependentUpon>HomePage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="TopTours.asmx.cs">
-      <DependentUpon>TopTours.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="WebForm2.aspx.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm2.aspx.designer.cs">
-      <DependentUpon>WebForm2.aspx</DependentUpon>
+    <Compile Include="Applications.aspx.designer.cs">
+      <DependentUpon>Applications.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="jsconfig.json" />
     <Content Include="assets\fonts\fontawesome-webfont.eot" />
     <Content Include="assets\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\fonts\fontawesome-webfont.woff" />
@@ -284,6 +363,18 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\localhost\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web References\localhost\Review.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\localhost\TopToursWS.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -291,7 +382,25 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://localhost:44359/TopToursWS.asmx%3fWSDL">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\localhost\</RelPath>
+      <UpdateFromURL>https://localhost:44359/TopToursWS.asmx%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>toptours1_localhost_TopToursWS</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

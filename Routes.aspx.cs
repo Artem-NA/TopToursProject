@@ -4,11 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Diagnostics;
 
 namespace toptours1
 {
     public partial class Routes1 : System.Web.UI.Page
     {
+        public List<Route> lst;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["customer"] == null)
@@ -17,25 +19,30 @@ namespace toptours1
             //My Routes
             if (!IsPostBack)
             {
-                BulletedList1.DisplayMode = BulletedListDisplayMode.HyperLink;
+                //BulletedList1.DisplayMode = BulletedListDisplayMode.HyperLink;
                 if (Route.GetAllRoutes(cust) == null)
                 {
                     Label1.Text = "You Don't have any routes";
                     return;
                 }
                 List<Route> routes = Route.GetAllRoutes(cust);
-                for (int i = 0; i < routes.Count; i++)
-                {
-                    Route route = routes[i];
-                    ListItem listItem = new ListItem
-                    {
-                        Text = route.RouteName,
-                        Value = "RouteUpdate.aspx?" + "name=" + route.RouteName
-                    };
-                    BulletedList1.Items.Add(listItem);
-                }
+                this.lst = routes;
+
+                
+                //for (int i = 0; i < routes.Count; i++)
+                //{
+                //    Route route = routes[i];
+                //    ListItem listItem = new ListItem
+                //    {
+                //        Text = route.RouteName,
+                //        Value = "RouteUpdate.aspx?" + "name=" + route.RouteName
+                //    };
+                //    BulletedList1.Items.Add(listItem);
+                //}
             }
         }
+
+        
 
         protected void Button1_Click(object sender, EventArgs e)
         {

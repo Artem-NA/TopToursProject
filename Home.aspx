@@ -102,7 +102,7 @@
 
 									</h2>
 									<div class="about-btn">
-										<input type="button" name="submit" value="Profile" class="about-view" onclick="location.href = 'Routes.aspx';"/>
+										<input type="button" name="submit" value="Profile" class="about-view" onclick="location.href = 'Profile.aspx';"/>
 									</div>
 								</div>
 							</div>

@@ -16,17 +16,17 @@ namespace toptours1
                 Response.Redirect("Login.aspx");
             Route r = Route.GetRoute(GetNameFromUrl());
             Label1.Text = r.ToString();
-            List<Review> reviews = Review.GetAllReviewsOfRoute(r);
+            List<localhost.Review> reviews = MyService.GetAllReviews(r.RouteID);
             for(int i = 0; i < reviews.Count; i++)
             {
                 TextBox tb = new TextBox();
                 Label label = new Label();
                 Label label2 = new Label();
                 Label nameLabel = new Label();
-                int id=reviews[i].GetCustomerId();
+                //int id = reviews[i].GetCustomerId();
                 int rating = reviews[i].Rating;
-                Customer cust=Customer.GetCustomer(id);
-                nameLabel.Text = cust.Username +" rating:"+rating+"</br>";
+                //Customer cust = Customer.GetCustomer(id);
+                //nameLabel.Text = cust.Username +" rating:"+rating+"</br>";
                 label2.Text = "</br>";
                 label.Text = "</br>";
                 tb.Text = reviews[i].Content;

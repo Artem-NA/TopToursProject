@@ -4,9 +4,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Httt</title>
+    <link href="StyleSheets/SSRoute.css" rel="stylesheet" />
 </head>
-<body style="font-weight: 700; font-style: italic; background-color: #00CCFF">
+<body >
     <form id="form1" runat="server">
         <div>
             <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="Home" />
@@ -14,8 +15,28 @@
         <div style="direction: ltr">
             <br />
             My Routes<br />
-            <asp:BulletedList ID="BulletedList1" runat="server">
-            </asp:BulletedList>
+            <%--<asp:BulletedList ID="BulletedList1" runat="server">
+            </asp:BulletedList>--%>
+
+            <div class="lol">
+                      <% for(int i = 0; i < lst.Count; i++) { %>
+                               <div><%=lst[i].RouteName %></div>
+                        <% } %>
+                
+
+
+          
+
+
+
+
+            </div>
+
+
+
+
+
+
             <br />
             Don&#39;t find your route? then create one by yourself!<br />
         <div>
