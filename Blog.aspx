@@ -50,9 +50,9 @@
 
     </section>
 
-        <section class="blog-content">
+        <section class="blog-content" style="width:100%; height:1000px;">
 
-            <div class="row">
+           <%-- <div class="row">
 
                 <div class="comment-col">
 
@@ -82,7 +82,7 @@
 
                     </div>
 
-                </div>
+                </div>--%>
 
 
 

@@ -21,9 +21,11 @@ nav{    /* navigation bar*/
     justify-content:space-between;
     align-items:center;
 }
-.nav-links{
-    flex:1;
-    text-align:right;
+.nav-links {
+    flex: 1;
+    text-align: right;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .nav-links ul li{
     list-style:none;
@@ -154,7 +156,7 @@ nav{    /* navigation bar*/
 }
 .reviews-col{
     flex-basis:44%;
-    border-radius:10px;
+    /*border-radius:10px;*/
     margin-bottom:5%;
     text-align:left;
     background:#fff3f3;
@@ -344,3 +346,21 @@ nav{    /* navigation bar*/
     padding: 30px 0;
 }
 .resultBL li{ text-decoration:none;}
+
+.comment {
+    width: 600px;
+    height: 500px;
+    
+}
+.btnlog {
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    transform: translate(-50%,-50%);
+    font-family: sans-serif;
+    color: white;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 20px;
+}

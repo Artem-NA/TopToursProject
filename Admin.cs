@@ -10,8 +10,6 @@ namespace toptours1
     {
         //admin have to:
         //control the website
-        //requirements :skill - when user was first signed in(time) , honesty
-        //add new routes
         // add new user to be admin
         // delete route /review/ user/ place/ picture
         public Admin(string firstName, string lastName, string username, string password, string email,string imgProfile) : base(firstName, lastName, username, password, email,imgProfile)
@@ -21,19 +19,7 @@ namespace toptours1
         {
 
         }
-        //WORKING PROPERLY
-        //public static void AddNewAdmin(string username,string experince)
-        //{
-        //    // Connection
-        //    MySqlConnection con = new MySqlConnection(ServerNames.CDB);
-        //    //Command which delets all user's pictures for good
-        //    string sqlQuerty = $@"UPDATE `toptours`.`users` SET `IsAdmin` = '1' WHERE (username = '{username}');";
-        //    MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
-        //    con.Open();
-        //    cmd.ExecuteReader();
-        //    con.Close();
-        //    //incorrect email/password
-        //}
+        
         
         public static void RequestToBeAdmin(string username,string applicationMsg)
         { 
@@ -116,6 +102,28 @@ namespace toptours1
             con.Close();
             return list;
         }
+        public static List<string> GetCustomers()
+        {
+            // Creating list of users' ids
+            string sqlQuerty = $@"SELECT username
+            FROM toptours.users";
+            List<string> list = new List<string>();
+            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
+            MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
+            con.Open();
+            MySqlDataReader dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    string username = dr.GetString(0);
+                    list.Add(username);
+                }
+            }
+            con.Close();
+            return list;
+        }
+
         public static Customer GetAnyCustomer(string username)
         {
             // Connection
@@ -134,12 +142,12 @@ namespace toptours1
             con.Close();
             return cust;
         }
-        public static bool DeleteAnyUser(string username)
+        public static void DeleteAnyUser(string username)
         {
             Customer cust =GetAnyCustomer(username);
-            if (cust!=null&&cust.DeleteAccount())
-                return true;
-            return false;
+            cust.DeleteAccount();
+           
+           
         }
         public static bool DeleteAnyPlace(string placeName,string username)
         { 
@@ -156,19 +164,21 @@ namespace toptours1
                 return true;
             return false;
         }
-        public static bool DeleteAnyReview(string caption,string username)
+        public static bool DeleteAnyReview(string caption, string username)
         {
-            //Customer cust = GetAnyCustomer(username);
-            //localhost.Review r = localhost.(cust, caption);
-            //if (cust != null && r != null)
-            //{
-            //    r.DeleteReview();
-            //    return true;
-            //}
-            //return false;\
-            return true;
+            
+            Customer cust = GetAnyCustomer(username);
+            localhost.Review r = MyService.GetReview(cust.CustomerID, caption);
+            if (cust != null && r != null)
+            {
+                MyService.DeleteReview(r);
+                return true;
+            }
+            return false;
 
 
         }
+
+
     }
 }

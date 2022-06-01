@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="toptours1.Profile" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Profile2.aspx.cs" Inherits="toptours1.Profile" %>
 
 <!DOCTYPE html>
 
@@ -16,10 +16,10 @@
             Security Check</div>
         <p>
             Email<br />
-            <asp:TextBox ID="TextBox9" runat="server" class="tb" ></asp:TextBox>
+            <input type="text" autocomplete="off" class="tb" id="Email" runat="server" placeholder="Enter Email" />
             <br />
             Password<br />
-            <asp:TextBox ID="TextBox10" runat="server" class="tb"></asp:TextBox>
+            <input type="password" autocomplete="off" class="tb" id="Password" runat="server" placeholder="Enter Password" />
             </p>
         <p>
             My Personal Data</p>
@@ -51,10 +51,10 @@
         <br />
         Account Deletion <p>
         Email<br />
-            <asp:TextBox ID="TextBox13" runat="server" class="tb"></asp:TextBox>
+            <input type="text" autocomplete="off" class="tb" id="Email2" runat="server" placeholder="Enter Email" />
             <br />
             Password<br />
-            <input type="password" id="pass" runat="server" class="tb" name="pass"/>
+            <input type="password" id="pass" autocomplete="off" runat="server" class="tb" name="pass"/>
         </p>
         <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Delete" class="btn" />
         </div>

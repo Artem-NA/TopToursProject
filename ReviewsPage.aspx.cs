@@ -13,7 +13,8 @@ namespace toptours1
         {
             if (Session["customer"] == null)
                 Response.Redirect("Login.aspx");
-
+            Route r = Route.GetRoute(GetNameFromUrl());
+            Label1.Text = "Enter your review to" + r.RouteName; 
         }
         public static string GetNameFromUrl()
         {
@@ -22,14 +23,14 @@ namespace toptours1
             var query = HttpUtility.ParseQueryString(uri.Query);
             return query.Get("name");
         }
+
         protected void Button1_Click(object sender, EventArgs e)
         {
             Customer cust = (Customer)Session["customer"];
             string content = TextBox2.Text;
             int rating = Convert.ToInt32(TextBox3.Text);
             string caption = TextBox4.Text;
-            string routeName = TextBox1.Text;
-            Route r = Route.GetRoute(routeName);
+            Route r = Route.GetRoute(GetNameFromUrl());
             if (MyService.AddReview(content, rating, caption, cust.CustomerID, r.RouteID))
             {
                 Label1.Text = "Review not added because route not created or the same review already created by yourself";
@@ -82,7 +83,7 @@ namespace toptours1
 
         protected void Button5_Click(object sender, EventArgs e)
         {
-            Response.Redirect("HomePage.aspx");
+            Response.Redirect("Home2.aspx");
         }
 
     }

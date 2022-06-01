@@ -14,7 +14,7 @@ namespace toptours1
         private float longitude;
         private float latitude;
         private bool isPrivate;
-        private List<string> fileNames;
+        private string fileName;
         //I will need url attribute later
         //Get and Set for Class's attributes
         public int PlaceID { get => placeID; set => placeID = value; }
@@ -23,7 +23,7 @@ namespace toptours1
         public float Longitude { get => longitude; set => longitude = value; }
         public bool IsPrivate { get => isPrivate; set => isPrivate = value; }
         public float Latitude { get => latitude; set => latitude = value; }
-        public List<string> FileNames { get => fileNames; set => fileNames = value; }
+        public string FileNames { get => fileName; set => fileName = value; }
         public Place(string placeName, string placeInfo, float longitude, float latitude, bool isPrivate)
         {
             this.placeName = placeName;
@@ -32,14 +32,14 @@ namespace toptours1
             this.latitude = latitude;
             this.isPrivate = isPrivate;
         }
-        public Place(string placeName, string placeInfo, float longitude, float latitude, bool isPrivate, List<string> fileNames)
+        public Place(string placeName, string placeInfo, float longitude, float latitude, bool isPrivate, string fileName)
         {
             this.placeName = placeName;
             this.placeInfo = placeInfo;
             this.longitude = longitude;
             this.latitude = latitude;
             this.isPrivate = isPrivate;
-            this.fileNames = fileNames;
+            this.fileName = fileName;
         }
         public Place(int PlaceID, string placeName, string placeInfo, float longitude, float latitude, bool isPrivate)
         {
@@ -57,7 +57,7 @@ namespace toptours1
             this.placeInfo = placeInfo;
         }
         public Place() { }
-        public static Place AddPlace(string placeName, string placeInfo, float longitude, float latitude, bool isPrivate, int userId)
+        public static Place AddPlace(string placeName, string placeInfo, float longitude, float latitude, bool isPrivate, int userId,string url)
         {
 
             //Add new place to the database
@@ -83,40 +83,26 @@ namespace toptours1
             cmd.CommandText = $@"INSERT INTO `toptours`.`places` (`placeName`, `placeInfo`, `longitude`, `latitude`, `isPrivate`, `user_id`) VALUES ('{placeName}', '{placeInfo}', '{longitude}', '{latitude}', '{num}', '{userId}');";
             cmd.ExecuteNonQuery();
             con.Close();
-            Place p = new Place(placeName, placeInfo, longitude, latitude, isPrivate);
+            AddImageToPlace(placeName, url, userId);
+            Place p = new Place(placeName, placeInfo, longitude, latitude, isPrivate,url);
             // Close Connection
             con.Close();
             return p;
         }
-        public static Place AddImageToPlace(string placeName, string url, string fileName, int userId)
+        public static void AddImageToPlace(string placeName, string fileName, int userId)
         {
-            //Add new place to the database
             // Connection
-            //There can't be user with the same placeName
-            int placeId = Place.GetPlaceId(userId, placeName);
-            if (placeId == -1)
-                return null;
+            Place p =GetPlace(placeName);
             MySqlConnection con = new MySqlConnection(ServerNames.CDB);
-            string sqlQuerty = $@"SELECT * 
-            FROM toptours.images
-            Where (fileName={fileName}) AND (user_id='{userId}') AND (place_id='{placeId}')";
+            //Command which delets all user's pictures for good
+            string sqlQuerty = $@"INSERT INTO `toptours`.`images` (`fileName`, `place_id`, `user_id`) VALUES ('{fileName}', '{p.PlaceID}', '{userId}');
+";
             MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
             con.Open();
-            MySqlDataReader r = cmd.ExecuteReader();
-            if (r.HasRows)
-            { return null; }
-            // Close Connection
+            cmd.ExecuteReader();
             con.Close();
-            con.Open();
-            //Command which create new place to the database
-            cmd.CommandText = $@"INSERT INTO `toptours`.`images` (`url`, `fileName`, `place_id`, `user_id`) VALUES ('{url}', '{fileName}', '{placeId}', '{userId}');";
-            cmd.ExecuteNonQuery();
-            con.Close();
-            // Close Connection
-            List<string> fileNames = Place.GetFileNames(userId, placeId);
-            fileNames.Add(fileName);
-            Place p = new Place(placeName, Place.GetPlaceInfo(userId, placeName), (float)Convert.ToDouble(Place.GetLongtitude(userId, placeName)), (float)Convert.ToDouble(Place.GetPlaceLatitude(userId, placeName)), Place.GetIsPrivate(userId, placeName), fileNames);
-            return p;
+
+
 
 
 
@@ -374,6 +360,26 @@ namespace toptours1
             }
             return -1;
         }
+        public static string GetPlaceImage(int customer_id,int place_id)
+        {
+            // Connection
+            string str = "defualt.png";
+            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
+            //Command which checks if user already signed in by email and password
+            string sqlQuerty = $@"SELECT fileName
+            FROM toptours.images
+            Where (user_id='{customer_id}') AND (place_id='{place_id}')";
+            MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
+            con.Open();
+            MySqlDataReader r = cmd.ExecuteReader();
+            if (r.Read())
+            {
+                str = r.GetString(0);
+            }
+            // Close Connection
+            con.Close();
+            return str;
+        }
         public static Place GetPlace(int place_id)
         {
             //Show PlaceInfo
@@ -430,6 +436,7 @@ namespace toptours1
             }
             return p;
         }
+     
         public static List<Place> SearchPlace(string placeName)
         {
             List<Place> places = new List<Place>();
@@ -439,6 +446,28 @@ namespace toptours1
             string sqlQuerty = $@"select placeName
             From toptours.places
             where placeName like '%{placeName}%'";
+            MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
+            con.Open();
+            MySqlDataReader r = cmd.ExecuteReader();
+            if (r.HasRows)
+            {
+                while (r.Read())
+                {
+                    Place p = GetPlace(r.GetString(0));
+                    places.Add(p);
+                }
+            }
+            return places;
+        }
+        public static List<Place> SearchMyPlace(string placeName,int user_id)
+        {
+            List<Place> places = new List<Place>();
+            // Connection
+            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
+            //Command which checks if user already signed in by email and password
+            string sqlQuerty = $@"select placeName
+            From toptours.places
+            where placeName like '%{placeName}%' AND (user_id='{user_id}')";
             MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
             con.Open();
             MySqlDataReader r = cmd.ExecuteReader();

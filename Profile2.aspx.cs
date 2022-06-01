@@ -35,20 +35,20 @@ namespace toptours1
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Home2.aspx");
         }
 
         protected void Button3_Click(object sender, EventArgs e)
         {
 
-            string email = TextBox9.Text;
-            string password = TextBox10.Text;
+            string email = Email.Value;
+            string password = Password.Value;
             string newX = TextBox12.Text;
             Customer cust = Customer.Login(email, password);
             Update update;
             if (cust == null)
             {
-                Label1.Text = "Incorrect Email/Password!!!!!!!!";
+                Label1.Text = "Incorrect Email/Password!";
                 return;
             }
             if (DropDownList1.SelectedValue == "0")
@@ -85,7 +85,7 @@ namespace toptours1
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            string email = TextBox13.Text;
+            string email = Email2.Value;
             string password = pass.Value.ToString();
             if (email == "" || password == "")
             {
@@ -105,11 +105,6 @@ namespace toptours1
                     return;
             }
             Label1.Text = "Incorrect Email/Password";
-        }
-
-        protected void Button3_Click1(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -29,21 +29,12 @@
         <nav>
             <a herf="Home2.aspx"><img id="logo" src="imgs/logoWhPNG.png" alt="logo"/></a>
             <div class="nav-links" id="navLinks">
-           
                 <%-- ul-unordered list --%>
                 <ul>
                     <%-- li- list item --%>
-                    <li><a href="home2.aspx">HOME</a></li>
-                        <li><a href="Places2.aspx">PLACES</a></li>
-                        <li><a href="Routes.aspx">ROUTES</a></li>
-                        <li><a href="AboutUs2.aspx">ABOUT US</a></li>
-                        <li><a href="admins.aspx">ADMINS</a></li>
-                    <li><a href="profile.aspx">PROFILE</a></li>
-                    <%-- if logged in then this button will be log out --%>
-                    <li><a href="Login.aspx">LOGIN</a></li>
-                    
-
-
+                       <asp:BulletedList ID="BulletedList1"  runat="server"></asp:BulletedList>
+                       <asp:Button ID="IsLogged" runat="server" class="btnlog" Text="" OnClick="IsLogged_Click" />
+                       
                 </ul>
             </div>
         </nav>
@@ -90,7 +81,7 @@
       
      <section class="secTwo">
          <h1>Our Routes</h1>
-         <p>Come with us and we will showw you the best routes ever and you even have the option to create your own routes!</p>
+         <p>Come with us and we will show you the best routes ever and you even have the option to create your own routes!</p>
          <div class="row">
              <div class="secTwo-col">
                  <img src="images/pic1.jpg" />
@@ -124,27 +115,27 @@
       <section class="reviews">
 
             <h1>Reviews Of Our Customers </h1>
-         <p>Come with us and we will showw you the best routes ever and you even have the option to create your own routes!</p>
+         <p>Come and hear what our amazing customer think about us and consider signing up to join thier experince too</p>
 
           <div class="row">
 
               <div class="reviews-col">
-                  <img src="images/sea.jpg" />
+                  <img class="comment" src="images/f1.jpg" />
                   <div>
                       <h3>Best Site</h3>
-                      <p>Come with us and we will showw you the best routes ever and you even have the option to create your own routes!</p>
-                      <h3 class="name">LOL</h3>
+                      <p>Great site, really enjoyed my time there during the vacation I had</p>
+                      <h3 class="name">Marisa202</h3>
                       <% for(int i = 0; i < 5; i++) { %>
                                <i class="fa fa-star"></i>
                         <% } %>
                   </div>
               </div>
                 <div class="reviews-col">
-                  <img src="images/sea.jpg" />
+                  <img class="comment" src="images/f2.jpg" />
                   <div>
                       <h3>NICE</h3>
-                      <p>Come with us and we will showw you the best routes ever and you even have the option to create your own routes!</p>
-                      <h3 class="name">LOL2</h3>
+                      <p>I was there only few days and already in love with this cool website</p>
+                      <h3 class="name">Bob Dinger9</h3>
                         <% for(int i = 0; i < 4; i++) { %>
                                <i class="fa fa-star"></i>
                         <% } %>

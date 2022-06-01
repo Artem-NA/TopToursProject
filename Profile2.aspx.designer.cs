@@ -33,22 +33,22 @@ namespace toptours1
         protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// TextBox9 control.
+        /// Email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox9;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Email;
 
         /// <summary>
-        /// TextBox10 control.
+        /// Password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox10;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword Password;
 
         /// <summary>
         /// Label2 control.
@@ -141,13 +141,13 @@ namespace toptours1
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// TextBox13 control.
+        /// Email2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox13;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText Email2;
 
         /// <summary>
         /// pass control.

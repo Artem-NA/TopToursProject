@@ -24,22 +24,31 @@ namespace toptours1
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Button6 control.
+        /// BulletedList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button6;
+        protected global::System.Web.UI.WebControls.BulletedList BulletedList1;
 
         /// <summary>
-        /// MessageTB control.
+        /// IsLogged control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox MessageTB;
+        protected global::System.Web.UI.WebControls.Button IsLogged;
+
+        /// <summary>
+        /// Info control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea Info;
 
         /// <summary>
         /// Button7 control.

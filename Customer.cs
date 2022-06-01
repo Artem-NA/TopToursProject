@@ -400,7 +400,7 @@ namespace toptours1
             string sqlQuerty = $@"Select user_id,firstName,lastName,username,password1,email
             From toptours.users
             where (email='{this.email}') AND(password1='{this.password}') AND(IsAdmin='1')";
-            Admin a=null;
+            Admin a = null;
             MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
             con.Open();
             MySqlDataReader r = cmd.ExecuteReader();
@@ -409,7 +409,7 @@ namespace toptours1
                 string firstN = r.GetString(1);
                 string lastN = r.GetString(2);
                 string username = r.GetString(3);
-                a = new Admin( firstN, lastN, username, password, email);
+                a = new Admin(firstN, lastN, username, password, email);
             }
             // Close Connection
             con.Close();

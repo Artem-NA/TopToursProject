@@ -31,13 +31,20 @@
         <br />
         Place Name<p>
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <br />
+
+            <asp:Button ID="Button6" runat="server" Text="Search From My Places" OnClick="Button6_Click" />
         </p>
+        <p>
+        </p>
+        <asp:BulletedList ID="BulletedList1" runat="server">
+        </asp:BulletedList>
         <asp:Button ID="Button3" runat="server" Text="Add Place To Route" OnClick="Button3_Click" BorderStyle="Ridge" />
         <br/>
         <asp:Button ID="Button4" runat="server" Text="Delete Route" OnClick="Button4_Click" />
         <asp:Button ID="Button5" runat="server" Text="🌟" OnClick="Button5_Click" />
         <br />
-         <button type="button" class="" data-toggle="modal" data-target="#myModal">Add Review</button>
+        <asp:Button ID="Button2" runat="server" Text="Add Review" OnClick="Button2_Click" />
         <br />
         <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
         <br />
@@ -72,11 +79,7 @@
             Height="20px" Width="20px" CssClass="Empty" runat="server" />
             <asp:Button BorderStyle="None" ID="Rating5" onmouseover="return Decide(5);" OnClientClick="return Decide(5);"
             Height="20px" Width="20px" CssClass="Empty" runat="server" />
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+      
       </div>
       
     </div>

@@ -28,16 +28,8 @@
                 <%-- ul-unordered list --%>
                 <ul>
                     <%-- li- list item --%>
-                    <li><a href="home2.aspx">HOME</a></li>
-                        <li><a href="PlacesPage.aspx">PLACES</a></li>
-                        <li><a href="Routes.aspx">ROUTES</a></li>
-                        <li><a href="AboutUs2.aspx">ABOUT US</a></li>
-                        <li><a href="admins.aspx">ADMINS</a></li>
-                    <li><a href="profile.aspx">PROFILE</a></li>
-                    <%-- if logged in then this button will be log out --%>
-                    <li><a href="login2.aspx">LOGIN</a></li>
-
-
+                      <asp:BulletedList ID="BulletedList1"  runat="server"></asp:BulletedList>
+                       <asp:Button ID="IsLogged" runat="server" class="btnlog" Text="" OnClick="IsLogged_Click" />
                 </ul>
             </div>
         </nav>
@@ -58,7 +50,7 @@
                 <h1>WE ARE HERE TO MAKE YOUR DREAMS COME TRUE</h1>
                 <p>ndividual Israel Travel Company guides can accompany you for your whole visit or a number of guides can spend a day or more with you as part of a unique world travel experience.
                   Each of our tours is custom designed and we specialize in matching the most suitable recommended guide to the style, needs and interests of each client.</p>
-                <a href="Home.aspx" class="visit-btn">Explore More</a>
+                <a href="Home2.aspx" class="visit-btn">Explore More</a>
 
             </div>
             <div class="about-col">

@@ -83,14 +83,13 @@ namespace toptours1
         protected void Button3_Click(object sender, EventArgs e)
         {
             //Add place to route
-            //add place to route
             string routeName = GetNameFromUrl();
             Customer cust = (Customer)Session["customer"];
-            string placeName = TextBox2.Text;
+            string placeName = TextBox1.Text;
             Place p = Place.GetPlace(placeName);
             if(p == null)
             {
-                Label1.Text = "wrong place name ";
+                Response.Write("<script>alert('Place not exists');</script>");
                 return;
             }
             Route r = Route.GetRoute(routeName);
@@ -99,7 +98,7 @@ namespace toptours1
                 Response.Write("<script>alert('You did not create a route with that name');</script>");
                 return;
             }
-            if (r.AddPlaceToRoute(p, cust) == null)
+            if (!r.AddPlaceToRoute(p, cust))
             {
                 Response.Write("<script>alert('Place already in route');</script>");
                 return;
@@ -109,15 +108,15 @@ namespace toptours1
 
         protected void Button4_Click(object sender, EventArgs e)
         {
-            //delete route
-            Customer cust = (Customer)Session["customer"];
-            string routeName = GetNameFromUrl();
-            Route r = Route.GetRoute(routeName);
-            if (r != null && r.DeleteRoute(routeName, cust.CustomerID))
-            {
-                Response.Write("<script>alert('Route Deleted Successfully');</script>");
-                return;
-            }
+            ////delete route
+            //Customer cust = (Customer)Session["customer"];
+            //string routeName = GetNameFromUrl();
+            //Route r = Route.GetRoute(routeName);
+            //if (r != null && r.DeleteRoute(routeName, cust.CustomerID))
+            //{
+            //    Response.Write("<script>alert('Route Deleted Successfully');</script>");
+            //    return;
+            //}
         }
 
         protected void Button5_Click(object sender, EventArgs e)
@@ -138,6 +137,37 @@ namespace toptours1
         protected void HomeButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("HomePage.aspx");
+        }
+
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            BulletedList1.Items.Clear();
+            BulletedList1.DisplayMode = BulletedListDisplayMode.HyperLink;
+            Customer cust = (Customer)Session["customer"];
+            string value = TextBox1.Text;
+            if (Place.SearchMyPlace(value,cust.CustomerID) == null)
+            {
+                ListItem listItem = new ListItem { Text = "No Places found,try again" };
+                BulletedList1.Items.Add(listItem);
+                return;
+            }
+            List<Place> places = Place.SearchMyPlace(value, cust.CustomerID);
+            for (int i = 0; i < places.Count; i++)
+            {
+                Place place = places[i];
+                ListItem listItem = new ListItem
+                {
+                    Text = place.PlaceName,
+                    Value = "PlaceShow.aspx?" + "name=" + place.PlaceName
+                };
+                BulletedList1.Items.Add(listItem);
+            }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Route r = Route.GetRoute(GetNameFromUrl());
+            Response.Redirect("ReviewsPage.aspx?" + "name=" + r.RouteName);
         }
     }
 }

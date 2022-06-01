@@ -66,14 +66,13 @@ namespace toptours1
             con.Close();
             return route;
         }
-        public Route AddPlaceToRoute(Place p, Customer c)
+        public bool AddPlaceToRoute(Place p, Customer c)
         {
-            Route route = null;
             int placeOrderId = 1;
             if (!IsCreatedBySameUser(c, p.PlaceName))
-                return route;
+                return false;
             if (PlaceInRoute(p.PlaceID))
-                return route;
+                return false;
             if (this.places != null)
                 placeOrderId = NextPlaceOrder(this.routeID);
             // Connection
@@ -86,7 +85,7 @@ namespace toptours1
             this.places.Add(p);
             // Close Connection
             con.Close();
-            return route;
+            return true;
         }
         public void DoFavoriteRoute()
         {
@@ -235,7 +234,7 @@ namespace toptours1
             // Connection
             MySqlConnection con = new MySqlConnection(ServerNames.CDB);
             //Command which checks if user already signed in by email and password
-            string sqlQuerty = $@"select route_id
+            string sqlQuerty = $@"select routeName
             From toptours.routes
             where routeName like '%{routeName}%'";
             MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
@@ -407,7 +406,7 @@ namespace toptours1
             // Connection
             MySqlConnection con = new MySqlConnection(ServerNames.CDB);
             //Command which checks if user already signed in by email and password
-            string sqlQuerty = $@"select r.routeName,u.user_id
+            string sqlQuerty = $@"select r.routeName,r.user_id
             From toptours.routes r INNER JOIN toptours.users u
             On r.user_id=u.user_id
             Where(r.user_id='{userId}')And (r.routeName='{routeName}')";
@@ -417,12 +416,11 @@ namespace toptours1
             if (r.Read())
             {
                 //User In dataBase
-                int id = r.GetInt32(0);
                 // Close Connection
                 con.Close();
                 con.Open();
                 //Command which delete user from database
-                cmd.CommandText = $@"DELETE FROM `toptours`.`routes` WHERE (`route_id` = '{id}');";
+                cmd.CommandText = $@"DELETE FROM `toptours`.`routes` WHERE (`route_id` = '{this.RouteID}');";
                 cmd.ExecuteReader();
                 // Close Connection
                 con.Close();
@@ -434,37 +432,13 @@ namespace toptours1
             //incorrect email/password
             return false;
         }
-        public string SearchRoute()
+        public static List<string> ShowFavorite(Customer c)
         {
+           List<string> s= new List<string>();
             // Connection
             MySqlConnection con = new MySqlConnection(ServerNames.CDB);
             //Command which checks if user already signed in by email and password
-            string sqlQuerty = $@"select *
-            From toptours.routes r INNER JOIN toptours.users u
-            On r.user_id=u.user_id
-            Where(r.routeName='{routeName}')";
-            MySqlCommand cmd = new MySqlCommand(sqlQuerty, con);
-            con.Open();
-            MySqlDataReader r = cmd.ExecuteReader();
-            if (r.Read())
-            {
-                int routeID = r.GetInt32(0);
-                string routeInfo = r.GetString(4);
-                string title = r.GetString(3);
-                Route route = new Route(places, routeID, routeName, title, routeInfo);
-                // Close Connection
-                con.Close();
-                return route.ToString();
-            }
-            return "You did not created route with the same name";
-        }
-        public static string ShowFavorite(Customer c)
-        {
-           string s= "";
-            // Connection
-            MySqlConnection con = new MySqlConnection(ServerNames.CDB);
-            //Command which checks if user already signed in by email and password
-            string sqlQuerty = $@"select routeName
+            string sqlQuerty = $@"select r.routeName
             From toptours.routes r INNER JOIN toptours.users u
             On r.user_id=u.user_id
             Where(r.IsFavorite='1')AND(r.user_id='{c.CustomerID}')";
@@ -476,7 +450,7 @@ namespace toptours1
                 while (r.Read())
                 {
                     
-                       s+= r.GetString(0);
+                       s.Add( r.GetString(0));
                 }
             }
             return s;

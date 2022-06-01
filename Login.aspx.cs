@@ -28,7 +28,7 @@ namespace toptours1
             Session["Customer"] = cust;
             
             //Move to secured pages
-            Response.Redirect("HomeSecured.aspx");
+            Response.Redirect("Home2.aspx");
         }
     }
 }

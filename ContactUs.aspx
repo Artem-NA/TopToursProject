@@ -28,36 +28,8 @@
                 <%-- ul-unordered list --%>
                 <ul>
                     <%-- li- list item --%>
-                    <li><a href="Home2.aspx">HOME</a></li>
-                        <li><a href="Places2.aspx">PLACES</a></li>
-                        <li><a href="Routes2.aspx">ROUTES</a></li>
-                        <li><a href="AboutUs2.aspx">ABOUT US</a></li>
-                        <li><a href="ContactUs2.aspx">ABOUT US</a></li>
-                    <%-- If Customer is logged in then the log out text will be shown and new link --%>
-                    <% if (Session["customer"] != null)
-                             {  %>
-                                    <li><a href="Profile2.aspx">PROFILE</a></li>
-                                    <li><a href="Admins2.aspx">ADMINS</a></li>
-                                     <li><a href="Login.aspx"><%="LOG OUT" %></a></li>
-
-                          <% } %>
-
-                    <% if (Session["customer"] == null)
-                             {  %>
-                                    
-                                     <li><a href="Login.aspx"><%="LOGIN" %></a></li>
-
-                          <% } %>
-                     
-                                                      
-
-
-
-
-
-                        
-
-
+                      <asp:BulletedList ID="BulletedList1"  runat="server"></asp:BulletedList>
+                       <asp:Button ID="IsLogged" runat="server" class="btnlog" Text="" OnClick="IsLogged_Click" />
                 </ul>
             </div>
         </nav>
@@ -103,18 +75,18 @@
                  <div>
                      <i class="fa fa-envelope-o"></i>
                 
-                    <h5>infoTopTours@gmail.com</h5>
+                    <h5>infotoptours10@gmail.com</h5>
                 </div>
             </div>
 
 
             <div class="contact-col">
-                <h3>Write Us A Message</h3>
-                <input type="text" placeholder="Enter Your Name" required="" />
-                <input type="email" placeholder="Enter Your Email" required="" />
-                <input type="text" placeholder="Enter Your Subject" required="" />
-                <textarea rows="8" placeholder="Message" required=""></textarea>
-                <asp:Button ID="Button1" class="visit-btn" runat="server" Text="SEND" />
+                <h3>Type your information and we will make sure to contact you as soon as posssibe</h3>
+                <input type="text" autocomplete="off" runat="server" id="Name" placeholder="Enter Your Name" required=""  />
+                <input type="email" autocomplete="off" runat="server" id="Email" placeholder="Enter Your Email"  required=""/>
+                <input type="text" autocomplete="off" runat="server" id="Subject" placeholder="Enter Your Subject" required=""  />
+                <textarea rows="8" autocomplete="off" runat="server" id="Message" placeholder="Message" required=""></textarea>
+                <asp:Button ID="Button1" class="visit-btn" runat="server" Text="SEND" OnClick="Button1_Click" />
                
 
             </div>

@@ -73,3 +73,10 @@ nav { /* navigation bar*/
 .footer h3 {
     font-size: 15px;
 }
+.btnlog {
+    
+    background:red;
+    position: relative;
+    font-family: sans-serif;
+    color: white;
+}

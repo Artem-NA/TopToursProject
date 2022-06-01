@@ -37,31 +37,31 @@
             <a herf="Home2.aspx"><img id="logo" src="imgs/logoWhPNG.png" alt="logo"/></a>
             <div class="nav-links" id="navLinks">
                 <ul>
-                    <li><a href="home2.aspx">HOME</a></li>
-                        <li><a href="PlacesPage.aspx">PLACES</a></li>
-                        <li><a href="Routes.aspx">ROUTES</a></li>
-                        <li><a href="AboutUs2.aspx">ABOUT US</a></li>
-                        <li><a href="admins.aspx">ADMINS</a></li>
-                    <li><a href="profile.aspx">PROFILE</a></li>
-                    <li><a href="login2.aspx">LOGIN</a></li>
+                    <%-- li- list item --%>
+                    <asp:BulletedList ID="BulletedList2"  runat="server"></asp:BulletedList>
+                       <asp:Button ID="IsLogged" runat="server" class="btnlog" Text="" OnClick="IsLogged_Click" />
                 </ul>
             </div>
         </nav>
   
         <h1>Places</h1>
+        
     </section>
       
 
         <section class="myMap">
 
             <div class="row">
-
+                
             <div id='map'></div>
-
+            
+                
            </div>
 
 
+
         </section>
+       
 
 
         <section class="addPlace">
@@ -72,12 +72,11 @@
                     <h3>Add Place</h3>
 
                     <div class="comment-form">
-                        <input type="text" autocomplete="off" id="longitude" runat="server" placeholder="Longitude" />
-                        <input type="text" autocomplete="off" id="latitude" runat="server" placeholder="Latitude" />
+                        <asp:Label ID="Label1" runat="server" ClientIDMode="Static"></asp:Label>
+                        <input type="text" autocomplete="off" id="Text1" runat="server" placeholder="Copy LngLat(....,...) and paste here" />
                         <input type="text" autocomplete="off" id="Name" runat="server" placeholder="Enter place name" />
                           <textarea rows="6" autocomplete="off" id="Info" runat="server" placeholder="Enter place info"></textarea>
                            <h2>Is private?</h2>
-                            
                           <label class="container">Yes
                          <asp:RadioButton GroupName="gi" ID="RadioButton1" runat="server" Checked="true"  />
                          <span class="checkmark"></span>
@@ -86,42 +85,56 @@
                           <asp:RadioButton GroupName="gi" ID="RadioButton2" runat="server" Checked="false" />
                            <span class="checkmark"></span>
                           </label>
+                         <h2>Add Image</h2>
+                          <label class="upload" for="file1">Upload Image</label>
+
+                          <%--<div class="form-input" id="change">--%>
+                         <div class="preview">
+                        <%-- <img src="defult.jpg" id="file1-preview"/>--%>
+                        </div>
+                 
+<%--             <input type="file" id="file1" runat="server" accept="image/*" onchange="showPreview(event);"/>--%>
+                  <asp:FileUpload ID="file1" runat="server" onchange="showPreview(event)" accept="image/*"/>
+
+            </div>
                          <asp:Button ID="AddBtn" runat="server" Text="Post" class="visit-btn" OnClick="AddBtn_Click" style="background:black; color:white;" />
 
 
                     </div>
 
                 </div>
-             </div>
+            
 
 
         </section>
 
         <section class="placesPage" >
             <h1>My Places</h1>
+
             <div class="myPlaces">
                    
                            <% if (lst != null)
-                {  %>
+                           {  %>
                               <% for (int i = 0; i < lst.Count; i++)
                                   { %>
-                               <a href="ShowPlace2.aspx?name=<%=lst[i].PlaceName %>"><%=lst[i].PlaceName %></a>
+                                         <a href="ShowPlace2.aspx?name=<%=lst[i].PlaceName %>"><%=lst[i].PlaceName %></a>
 
                               <% } %>
 
                           <% } %>
 
-            </div>
+             </div>
         </section>
 
 
-        <section "placesPage2">
+        <section>
             <div class="example">
             <h1>Search Places</h1>
             <input type="text" id="searchValue" autocomplete="off" runat="server" placeholder="Search.." name="search"/>
-            <asp:Button ID="SearchBtn"  class="btnSearch" runat="server" Text="🔎" OnClick="SearchBtn_Click" />
-                <div class="result">
-                <asp:BulletedList ID="BulletedList1" class="resultBL" runat="server"></asp:BulletedList>
+            <asp:Button ID="SearchBtn"  class="btnSearch" runat="server" Text="🔎" OnClick="SearchBtn_Click" /><br />
+                <div >
+                    <br />
+                    <asp:BulletedList ID="BulletedList1" class="resultBL" runat="server"></asp:BulletedList>
 
                 </div>
             </div>
@@ -149,61 +162,49 @@
 
         mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ0ZW0wNCIsImEiOiJjbDBqZWptMTAwYnJnM2ltcm5iZ3hnYnhtIn0.a9TmhlV1Y7TISvmU67EEDA';
 
-     const map = new mapboxgl.Map({
-     container: 'map',
-         style: 'mapbox://styles/artem04/cl2t4kak6003a14o9w5x6ll87',
-         center: [35.03707246726779, 32.79384590789712],
-     zoom: 3
-     });
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/artem04/cl2t4kak6003a14o9w5x6ll87',
+            center: [35.03707246726779, 32.79384590789712],
+            zoom: 8
+        });
+        map.on('style.load', function () {
+            map.on('click', function (e) {
+                var coordinates = e.lngLat;
+                document.getElementById("Label1").innerHTML = coordinates;
+                new mapboxgl.Popup()
+                    .setLngLat(coordinates)
+                    .setHTML('You are here: <br/>' + coordinates)
+                    .addTo(map);
+                    
+                   
+            });
+        });
 
-        const geojson = {
-            type: 'FeatureCollection',
-            features: [
-                {
-                    type: 'Feature',
-                    geometry: {
-                        type: 'Point',
-                        coordinates: [35.03707246726779, 32.79384590789712]
-                    },
-                    properties: {
-                        title: 'Mapbox',
-                        description: 'Israel, Haifa Bay central bus station'
-                    }
-                },
-                //{
-                //    type: 'Feature',
-                //    geometry: {
-                //        type: 'Point',
-                //        coordinates: [-122.414, 37.776]
-                //    },
-                //    properties: {
-                //        title: 'Mapbox',
-                //        description: 'San Francisco, California'
-                //    }
-                //}
-            ]
-        };
+    
 
-        // add markers to map
-        for (const feature of geojson.features) {
-            // create a HTML element for each feature
-            const el = document.createElement('div');
-            el.className = 'marker';
 
-            // make a marker for each feature and add to the map
-            new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates)
-                .setPopup(
-                    new mapboxgl.Popup({ offset: 25 }) // add popups
-                        .setHTML(
-                            `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
-                        )
-                )
-                .addTo(map);
-        }
+
+
+
+
+    
 
     </script>
 
-
+      <%-- JS Script To Preview Image --%>
+    <%--<script type="text/javascript">
+        function showPreview(event) {
+            if (event.target.files.length > 0) {
+                var src = URL.createObjectURL(event.target.files[0]);
+                var preview = document.getElementById("file1-preview");
+                preview.src = src;
+                preview.style.display = "block";
+                document.getElementById("change").style.background = "white";
+                document.getElementById("change").style.border = "3px solid black";
+            }
+        }
+    </script>--%>
 
 
 

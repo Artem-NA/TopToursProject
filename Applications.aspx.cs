@@ -11,6 +11,12 @@ namespace toptours1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Customer cust = (Customer)Session["customer"];
+            if (Session["customer"] == null)
+                Response.Redirect("Login.aspx");
+            if (cust.IsAdmin() == null)
+                Response.Redirect("Application.aspx");
+
             //show application only if user asked to be admin
             List<string> list = Admin.Applications();
             List<string> list2 = Admin.ApplicationsID();

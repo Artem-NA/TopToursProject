@@ -13,6 +13,7 @@ namespace toptours1
         {
             if (Session["customer"] == null)
                 Response.Redirect("Login.aspx");
+            Customer cust = (Customer)Session["customer"];
             Place p = Place.GetPlace(GetNameFromUrl());
             Label1.Text = p.PlaceName;
             Label2.Text = p.PlaceInfo;
@@ -20,6 +21,37 @@ namespace toptours1
             if(p.IsPrivate)
             {
                 Label4.Text = "Place is private";
+            }
+            string image = Place.GetPlaceImage(cust.CustomerID, p.PlaceID);
+            Image1.ImageUrl = @"\images\" + image;
+
+
+            if (!IsPostBack)
+            {
+                BulletedList1.DisplayMode = BulletedListDisplayMode.HyperLink;
+                ListItem home = new ListItem { Value = "Home2.aspx", Text = "HOME" };
+                ListItem places = new ListItem { Value = "Places2.aspx", Text = "PLACES" };
+                ListItem routess = new ListItem { Value = "Routes2.aspx", Text = "ROUTES" };
+                ListItem aboutus = new ListItem { Value = "AboutUs2.aspx", Text = "ABOUT US" };
+                ListItem contactus = new ListItem { Value = "ContactUs.aspx", Text = "CONTACT US" };
+                BulletedList1.Items.Add(home);
+                BulletedList1.Items.Add(places);
+                BulletedList1.Items.Add(routess);
+                BulletedList1.Items.Add(aboutus);
+                BulletedList1.Items.Add(contactus);
+                if (Session["customer"] != null)
+                {
+                    
+                    IsLogged.Text = "LOG OUT";
+                    ListItem profile = new ListItem { Value = "Profile2.aspx", Text = cust.Username };
+                    ListItem Admins = new ListItem { Value = "Admins.aspx", Text = "ADMINS" };
+                    BulletedList1.Items.Add(profile);
+                    BulletedList1.Items.Add(Admins);
+
+
+                }
+                else
+                    IsLogged.Text = "LOGIN";
             }
         }
         public static string GetNameFromUrl()
@@ -44,6 +76,15 @@ namespace toptours1
         protected void EditBtn_Click(object sender, EventArgs e)
         {
             Response.Redirect($"EditPlace2.aspx?name={GetNameFromUrl()}");
+        }
+
+        protected void IsLogged_Click(object sender, EventArgs e)
+        {
+            if (Session["customer"] != null)
+            {
+                Session["customer"] = null;
+            }
+            Response.Redirect("Login.aspx");
         }
     }
 }

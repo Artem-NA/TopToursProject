@@ -128,9 +128,7 @@
     <Content Include="Blog.aspx" />
     <Content Include="ContactUs.aspx" />
     <Content Include="EditPlace2.aspx" />
-    <Content Include="Home.aspx" />
     <Content Include="Home2.aspx" />
-    <Content Include="HomeSecured.aspx" />
     <Content Include="images\pic1.jpg" />
     <Content Include="images\pic2.jpg" />
     <Content Include="images\pic3.jpg" />
@@ -140,16 +138,13 @@
     <Content Include="imgs\logoWhPNG.png" />
     <Content Include="imgs\mapbox-icon.png" />
     <Content Include="Login.aspx" />
-    <Content Include="NICK.aspx" />
-    <Content Include="OnlyAdmins.aspx" />
+    <Content Include="Admins.aspx" />
     <Content Include="Places2.aspx" />
-    <Content Include="PlacesPage.aspx" />
-    <Content Include="PlaceUpdate.aspx" />
-    <Content Include="Profile.aspx" />
+    <Content Include="PlaceShow.aspx" />
+    <Content Include="Profile2.aspx" />
     <Content Include="ReviewsPage.aspx" />
-    <Content Include="ReviewsRoute.aspx" />
-    <Content Include="Route2.aspx" />
-    <Content Include="Routes.aspx" />
+    <Content Include="Routes2.aspx" />
+    <Content Include="RouteShow.aspx" />
     <Content Include="RouteUpdate.aspx" />
     <Content Include="ShowMap.aspx" />
     <Content Include="ShowPlace2.aspx" />
@@ -202,13 +197,6 @@
     <Compile Include="EditPlace2.aspx.designer.cs">
       <DependentUpon>EditPlace2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Home.aspx.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Home.aspx.designer.cs">
-      <DependentUpon>Home.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Customer.cs" />
     <Compile Include="Home2.aspx.cs">
       <DependentUpon>Home2.aspx</DependentUpon>
@@ -216,13 +204,6 @@
     </Compile>
     <Compile Include="Home2.aspx.designer.cs">
       <DependentUpon>Home2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HomeSecured.aspx.cs">
-      <DependentUpon>HomeSecured.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="HomeSecured.aspx.designer.cs">
-      <DependentUpon>HomeSecured.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -232,19 +213,12 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="MyService.cs" />
-    <Compile Include="NICK.aspx.cs">
-      <DependentUpon>NICK.aspx</DependentUpon>
+    <Compile Include="Admins.aspx.cs">
+      <DependentUpon>Admins.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="NICK.aspx.designer.cs">
-      <DependentUpon>NICK.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="OnlyAdmins.aspx.cs">
-      <DependentUpon>OnlyAdmins.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="OnlyAdmins.aspx.designer.cs">
-      <DependentUpon>OnlyAdmins.aspx</DependentUpon>
+    <Compile Include="Admins.aspx.designer.cs">
+      <DependentUpon>Admins.aspx</DependentUpon>
     </Compile>
     <Compile Include="Place.cs" />
     <Compile Include="Places2.aspx.cs">
@@ -254,26 +228,19 @@
     <Compile Include="Places2.aspx.designer.cs">
       <DependentUpon>Places2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PlacesPage.aspx.cs">
-      <DependentUpon>PlacesPage.aspx</DependentUpon>
+    <Compile Include="PlaceShow.aspx.cs">
+      <DependentUpon>PlaceShow.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PlacesPage.aspx.designer.cs">
-      <DependentUpon>PlacesPage.aspx</DependentUpon>
+    <Compile Include="PlaceShow.aspx.designer.cs">
+      <DependentUpon>PlaceShow.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PlaceUpdate.aspx.cs">
-      <DependentUpon>PlaceUpdate.aspx</DependentUpon>
+    <Compile Include="Profile2.aspx.cs">
+      <DependentUpon>Profile2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PlaceUpdate.aspx.designer.cs">
-      <DependentUpon>PlaceUpdate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Profile.aspx.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Profile.aspx.designer.cs">
-      <DependentUpon>Profile.aspx</DependentUpon>
+    <Compile Include="Profile2.aspx.designer.cs">
+      <DependentUpon>Profile2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -287,26 +254,19 @@
     <Compile Include="ReviewsPage.aspx.designer.cs">
       <DependentUpon>ReviewsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ReviewsRoute.aspx.cs">
-      <DependentUpon>ReviewsRoute.aspx</DependentUpon>
+    <Compile Include="Routes2.aspx.cs">
+      <DependentUpon>Routes2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ReviewsRoute.aspx.designer.cs">
-      <DependentUpon>ReviewsRoute.aspx</DependentUpon>
+    <Compile Include="Routes2.aspx.designer.cs">
+      <DependentUpon>Routes2.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Route2.aspx.cs">
-      <DependentUpon>Route2.aspx</DependentUpon>
+    <Compile Include="RouteShow.aspx.cs">
+      <DependentUpon>RouteShow.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Route2.aspx.designer.cs">
-      <DependentUpon>Route2.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Routes.aspx.cs">
-      <DependentUpon>Routes.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Routes.aspx.designer.cs">
-      <DependentUpon>Routes.aspx</DependentUpon>
+    <Compile Include="RouteShow.aspx.designer.cs">
+      <DependentUpon>RouteShow.aspx</DependentUpon>
     </Compile>
     <Compile Include="RouteUpdate.aspx.cs">
       <DependentUpon>RouteUpdate.aspx</DependentUpon>

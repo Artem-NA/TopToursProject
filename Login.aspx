@@ -13,13 +13,14 @@
         <img src="/imgs/logo.jpeg" class="logo" />
         <form id="form1" runat="server">
            <h1>Login</h1>
-            <h2>Username:</h2>
-           <input type="text" autocomplete="off" id="Username" runat="server" placeholder="Enter Username" />
+            <h2>Email:</h2>
+           <input type="text" autocomplete="off" id="Username" runat="server" placeholder="Enter Email" />
             <h2>Password:</h2>
-            <input type="password" autocomplete="off" id="Password" runat="server" placeholder="Enter Username" />
+            <input type="password" autocomplete="off" id="Password" runat="server" placeholder="Enter Password" />
               <br /> 
             <asp:Button ID="LoginB" Text="Login" OnClick="LoginB_Click" runat="server" /> <br />
             <a href="SignUp.aspx">Don't Have An Account?</a> <br />
+            <a href="Home2.aspx">Home</a> <br />
             <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         </form>
         

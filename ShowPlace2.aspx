@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Blog</title>
+    <title>View My Place</title>
     <link href="StyleSheets/SSHome.css" rel="stylesheet" />
     <link href="StyleSheets/SSPlace.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" rel="stylesheet" />
@@ -27,13 +27,9 @@
             <a herf="Home2.aspx"><img id="logo" src="imgs/logoWhPNG.png" alt="logo"/></a>
             <div class="nav-links" id="navLinks">
                 <ul>
-                    <li><a href="home2.aspx">HOME</a></li>
-                        <li><a href="PlacesPage.aspx">PLACES</a></li>
-                        <li><a href="Routes.aspx">ROUTES</a></li>
-                        <li><a href="AboutUs2.aspx">ABOUT US</a></li>
-                        <li><a href="admins.aspx">ADMINS</a></li>
-                    <li><a href="profile.aspx">PROFILE</a></li>
-                    <li><a href="login2.aspx">LOGIN</a></li>
+                    <%-- li- list item --%>
+                    <asp:BulletedList ID="BulletedList1"  runat="server"></asp:BulletedList>
+                       <asp:Button ID="IsLogged" runat="server" class="btnlog" Text="" OnClick="IsLogged_Click" />
                 </ul>
             </div>
         </nav>
@@ -46,7 +42,7 @@
         
          <div class="row">
              <div class="secTwo-col" style="flex-basis:90%;">
-                 <img src="images/pic1.jpg" style="width:500px; height:350px;"/> <br />
+                 <asp:Image ID="Image1" runat="server" style="width:500px; height:350px;" /> <br />
                  <asp:Label ID="Label1" style="text-align:left; font-size:25px; font-weight:600" runat="server" Text="Label"></asp:Label> <br />
                  <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label><br />
                  <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label><br />

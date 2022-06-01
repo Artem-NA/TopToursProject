@@ -52,7 +52,7 @@ namespace toptours1
             }
             Customer cust = Customer.Login(email, password);
             Session["Customer"] = cust;
-            Response.Redirect("Home.aspx");
+            Response.Redirect("Home2.aspx");
         }
         public static bool IsValidInput(string str)
         {
